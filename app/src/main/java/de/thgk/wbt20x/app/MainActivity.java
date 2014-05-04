@@ -122,6 +122,7 @@ public class MainActivity extends ActionBarActivity {
         feedback.setText("WBT201 Logger App\n");
         feedback.append("=====================\n");
         feedback.append("(c) 2014 unter GPL Lizenz\n");
+        feedback.append("https://github.com/kugelm/WBT201-Android");
         feedback.append("  unter Verwendung von GetWBT (J2ME)\n");
         feedback.append("   (c)2008, Dirkjan Krijnders\n      <dirkjan@krijnders.net>\n\n");
 
