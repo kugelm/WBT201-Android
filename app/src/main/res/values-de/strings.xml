@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WBT201</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="strButtonConnect">Tracks vom GPS Logger holen</string>
+    <string name="action_erase">Speicher löschen</string>
+    <string name="string_really_erase">Soll der Logger wirklich gelöscht werden?</string>
+    <string name="string_erase_ok">Wirklich löschen!</string>
+    <string name="string_dont_erase">Nein, besser nicht.</string>
+    <string name="string_missed_swon_bt">Zuerst Bluetooth einschalten!</string>
+    <string name="action_test">Verbindung testen</string>
+    <string name="string_still_busy">Langsam, bin noch beschäftigt...</string>
+
+</resources>
