@@ -12,6 +12,6 @@ This project has been developed using Google Android Studio 0.5.7.
 
 Plans for future versions:
 * read out and set configuration parameters on the logger
-* alternative track directory (selectable)
+* alternative track directory (selectable) <-- done in latest version, could be improved
 * alternative track file formats
 * visualize tracks from app's menu (own viewer, other map apps....)
