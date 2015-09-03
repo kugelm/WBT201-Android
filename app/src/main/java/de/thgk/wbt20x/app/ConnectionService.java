@@ -154,7 +154,7 @@ public class ConnectionService extends IntentService {
             btSocket = wbt201.createRfcommSocketToServiceRecord(MY_UUID);
         } catch (IOException e) {
             Log.e(TAG, "CONNECT LOGGER: Socket creation failed.", e);
-            feedback("Kann keine Verbindung aufbauen!\n");
+            feedback(getString(R.string.string_cant_establish_connection));
             return false;
         }
 
@@ -179,7 +179,7 @@ public class ConnectionService extends IntentService {
                 Log.e(TAG,
                         "CONNECT LOGGER: Unable to close socket during connection failure", e2);
             }
-            feedback("Verbindungsfehler!\n");
+            feedback(getString(R.string.string_connection_error));
             return false;
         }
 
@@ -198,19 +198,19 @@ public class ConnectionService extends IntentService {
                 Log.e(TAG,
                         "CONNECT LOGGER: Unable to close socket during connection failure", e2);
             }
-            feedback("Verbindung fehlgeschlagen!\n");
+            feedback(getString(R.string.string_connection_error));
             Log.e(TAG, "CONNECT LOGGER: In/Output stream creation failed.", e);
             return false;
         }
 
         try {
             if (gpsDevice.login() || gpsDevice.login()) {
-                feedback("Login ok\n");
+                feedback(getString(R.string.string_login_ok));
             } else {
                 throw new Exception();
             }
         } catch (Exception e) {
-            feedback("Login fehlgeschlagen!\n");
+            feedback(getString(R.string.string_login_failed));
             Log.e(TAG, "CONNECT LOGGER: Login failed.", e);
             return false;
         }
@@ -225,13 +225,13 @@ public class ConnectionService extends IntentService {
             feedback("SN : " + gpsDevice.getSerialNumber() + "\n");
             feedback("SW : " + gpsDevice.getSwVersion() + "\n");
             feedback("HW : " + gpsDevice.getHwVersion() + "\n");
-            feedback("Points ca. " + gpsDevice.getPointCount() + "\n");
-            feedback("Füllstand " +
+            feedback(getString(R.string.string_points_approx) + gpsDevice.getPointCount() + "\n");
+            feedback(getString(R.string.string_fillheight) +
                     (1000*gpsDevice.bytesToBeRead())/(gpsDevice.getCapacity())/10f + " %\n");
 
         } catch (IOException e) {
             e.printStackTrace();
-            feedback("Verbindungsfehler!\n");
+            feedback(getString(R.string.string_connection_error));
             return false;
         }
         return true;
@@ -260,7 +260,7 @@ public class ConnectionService extends IntentService {
             gpsDevice.logout();
         } catch (IOException e) {
             Log.e(TAG, "CONNECT LOGGER: Logout failed.", e);
-            feedback("Verbindungsfehler!\n");
+            feedback(getString(R.string.string_connection_error));
         }
 
         try {
@@ -272,7 +272,7 @@ public class ConnectionService extends IntentService {
         }
         gpsDevice = null;
 
-        feedback("Verbindung beendet\n\n");
+        feedback(getString(R.string.string_connection_terminated));
 
     }
 
@@ -345,7 +345,7 @@ public class ConnectionService extends IntentService {
                 success = getDeviceInfo();
             } catch (IOException e) {
                 e.printStackTrace();
-                feedback("Löschen ist fehlgeschlagen!");
+                feedback(getString(R.string.string_clear_failed));
                 success = false;
             }
 

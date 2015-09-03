@@ -83,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (BA == null) {
             Toast.makeText(this,
-                    "Bluetooth is not available.",
+                    R.string.string_bt_unavailable,
                     Toast.LENGTH_LONG).show();
             finish();
             return;
@@ -106,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 else{
                     if (!connectToGpsLogger()) {
-                        feedback.append("Hat nicht geklappt!\n");
+                        feedback.append(getString(R.string.string_connect_failed));
                         cmdLogger = IDLE;
                     } else {
                         cmdLogger = CMD_FETCH_TRACKS;
@@ -121,9 +121,9 @@ public class MainActivity extends ActionBarActivity {
         feedback = (TextView) findViewById(R.id.feedbackTextView);
         feedback.setText("WBT201 Logger App\n");
         feedback.append("=====================\n");
-        feedback.append("(c) 2014 unter GPL Lizenz\n");
+        feedback.append(getString(R.string.string_GPL));
         feedback.append("https://github.com/kugelm/WBT201-Android");
-        feedback.append("  unter Verwendung von GetWBT (J2ME)\n");
+        feedback.append(getString(R.string.string_J2ME));
         feedback.append("   (c)2008, Dirkjan Krijnders\n      <dirkjan@krijnders.net>\n\n");
 
         if (! isListening ) {
@@ -145,7 +145,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-        feedback.append("Track Download in das Verzeichnis:\n ");
+        feedback.append(getString(R.string.string_track_download_to));
         feedback.append(ConnectionService.downloadDir.getAbsolutePath()+"\n");
 
     }
@@ -233,7 +233,7 @@ public class MainActivity extends ActionBarActivity {
             }
             else{
                 if (!connectToGpsLogger()) {
-                    feedback.append("Hat nicht geklappt!\n");
+                    feedback.append(getString(R.string.string_connect_failed));
                     cmdLogger = IDLE;
                 } else {
                     cmdLogger = CMD_TEST;
@@ -252,7 +252,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (resultCode == Activity.RESULT_OK && requestCode == SWITCHON_BLUETOOTH) {
             if (!connectToGpsLogger()) {
-                feedback.append("Hat nicht geklappt!\n");
+                feedback.append(getString(R.string.string_connect_failed));
                 cmdLogger = IDLE;
             } else {
                 if (cmdLogger == CMD_TEST) {
@@ -271,14 +271,14 @@ public class MainActivity extends ActionBarActivity {
         // If there are paired devices
         if (pairedDevices.size() > 0) {
             // Loop through paired devices
-            feedback.append("Bekannte BT Geräte:\n");
+            feedback.append(getString(R.string.string_known_bt_devices));
             for (BluetoothDevice device : pairedDevices) {
                 // Add the name and address to an array adapter to show in a ListView
                 Log.d(TAG, "paired bt dev: " + device.getName() + " - " + device.getAddress());
 
                 if (device.getName().matches("G-Rays2")) {
                     if (wbt201!=null) {
-                        feedback.append( "Mehrere Logger! Nur der letzte wird genommen...\n");
+                        feedback.append( getString(R.string.string_multiple_loggers));
                     }
                     wbt201 = device;
                     feedback.append( "  ** "+device.getName() + " **\n");
@@ -287,16 +287,16 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         } else {
-            feedback.append( "Kein passender Logger in der Liste der bekannten Bluetooth Geräte!\n");
+            feedback.append( getString(R.string.string_no_matching_bt_logger));
             return false;
         }
 
         if (wbt201 != null) {
             macAddrOfGpsLogger = wbt201.getAddress();
-            feedback.append("Verbinde mit " + macAddrOfGpsLogger + " ...\n");
+            feedback.append(getString(R.string.string_connecting_with) + macAddrOfGpsLogger + " ...\n");
         } else {
             Toast.makeText(this,
-                    "Kein GPS Logger unter den verbundenen Bluetooth Geräten",
+                    getString(R.string.string_no_matching_bt_logger),
                     Toast.LENGTH_LONG).show();
             return false;
         }
