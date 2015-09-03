@@ -278,6 +278,11 @@ public class MainActivity extends ActionBarActivity {
                                     feedback.append(ConnectionService.downloadDir.getAbsolutePath()+"\n");
                                 }
                             });
+            // Toggle new folder button enabling
+            directoryChooserDialog.setNewFolderEnabled(true);
+            // Load directory chooser dialog for initial 'm_chosenDir' directory.
+            // The registered callback will be called upon final directory selection.
+            directoryChooserDialog.chooseDirectory(/*ConnectionService.downloadDir.getAbsolutePath()*/"/");
             return true;
         }
 
