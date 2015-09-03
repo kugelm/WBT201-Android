@@ -28,5 +28,15 @@
     <string name="string_fillheight">"Memory usage "</string>
     <string name="string_connection_terminated">Connection terminated\n\n</string>
     <string name="string_clear_failed">Clear failed!</string>
+    <string name="action_dl_path">Download Directory</string>
+    <string name="string_dlg_dir_create_ok">OK</string>
+    <string name="string_dlg_dir_create_cancel">Cancel</string>
+    <string name="string_dlg_new_folder">New folder</string>
+    <string name="string_dlg_new_folder_name">New folder name</string>
+    <string name="string_dlg_new_folder_ok">OK</string>
+    <string name="string_dlg_failed_create_dir">Failed to create \'</string>
+    <string name="string_cancel_new_folder">Cancel</string>
+    <string name="string_dir_chooser_reference">"   Directory Chooser source code from Gregory Shpitalnik\n"</string>
+    <string name="string_COPL">"   under COPL license\n"</string>
 
 </resources>

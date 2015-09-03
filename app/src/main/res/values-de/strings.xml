@@ -28,5 +28,15 @@
     <string name="string_track_download_to">"Track Download in das Verzeichnis:\n "</string>
     <string name="string_bt_unavailable">Bluetooth ist nicht eingeschaltet.</string>
     <string name="string_GPL">(c) 2014 unter GPL Lizenz\n</string>
+    <string name="string_dir_chooser_reference">"   Directory Chooser source code von Gregory Shpitalnik\n"</string>
+    <string name="string_dlg_dir_create_cancel">Abbrechen</string>
+    <string name="string_dlg_dir_create_ok">Ok</string>
+    <string name="string_dlg_failed_create_dir">Fehler beim Anlegen von \'</string>
+    <string name="string_dlg_new_folder">Neues Verzeichnis</string>
+    <string name="string_dlg_new_folder_name">Name des neuen Verzeichnis</string>
+    <string name="string_dlg_new_folder_ok">Ok</string>
+    <string name="string_COPL">"   unter COPL Lizenz\n"</string>
+    <string name="action_dl_path">Download Directory</string>
+    <string name="string_cancel_new_folder">Abbrechen</string>
 
 </resources>

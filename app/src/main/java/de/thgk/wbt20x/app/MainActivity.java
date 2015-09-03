@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -89,6 +90,9 @@ public class MainActivity extends ActionBarActivity {
             return;
         }
 
+        SharedPreferences prefs = getSharedPreferences("WBT201", Context.MODE_PRIVATE);
+
+
         final Button connectButton = (Button) findViewById(R.id.buttonConnect);
         connectButton.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -124,7 +128,11 @@ public class MainActivity extends ActionBarActivity {
         feedback.append(getString(R.string.string_GPL));
         feedback.append("https://github.com/kugelm/WBT201-Android");
         feedback.append(getString(R.string.string_J2ME));
-        feedback.append("   (c)2008, Dirkjan Krijnders\n      <dirkjan@krijnders.net>\n\n");
+        feedback.append("   (c)2008, Dirkjan Krijnders\n      <dirkjan@krijnders.net>\n");
+        feedback.append(getString(R.string.string_dir_chooser_reference));
+        //feedback.append("    ");
+        feedback.append(getString(R.string.string_COPL));
+        feedback.append("\n");
 
         if (! isListening ) {
             registerReceiver(feedbackReceiver, new IntentFilter(ACTION_FEEDBACK));
@@ -133,18 +141,24 @@ public class MainActivity extends ActionBarActivity {
             isListening = true;
         }
 
-
-        File osmandDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "osmand");
-        File osmTrackDir = new File(osmandDir.getPath(), "tracks");
-        if (osmandDir.exists()) {
-            if (!osmTrackDir.exists() ) {
-                osmTrackDir.mkdir();
+        String prefDownloadPath = prefs.getString("trackDir", null);
+        if (prefDownloadPath!=null) {
+            File prefDir = new File(prefDownloadPath);
+            if (prefDir.isDirectory()) {
+                ConnectionService.downloadDir = prefDir;
             }
-            if (osmTrackDir.exists()) {
-                ConnectionService.downloadDir = osmTrackDir;
+        } else {
+            File osmandDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "osmand");
+            File osmTrackDir = new File(osmandDir.getPath(), "tracks");
+            if (osmandDir.exists()) {
+                if (!osmTrackDir.exists()) {
+                    osmTrackDir.mkdir();
+                }
+                if (osmTrackDir.isDirectory()) {
+                    ConnectionService.downloadDir = osmTrackDir;
+                }
             }
         }
-
         feedback.append(getString(R.string.string_track_download_to));
         feedback.append(ConnectionService.downloadDir.getAbsolutePath()+"\n");
 
@@ -242,6 +256,31 @@ public class MainActivity extends ActionBarActivity {
             }
             return true;
         }
+        if (id == R.id.action_dl_path) {
+            // Create DirectoryChooserDialog and register a callback
+            DirectoryChooserDialog directoryChooserDialog =
+                    new DirectoryChooserDialog(MainActivity.this,
+                            new DirectoryChooserDialog.ChosenDirectoryListener()
+                            {
+                                @Override
+                                public void onChosenDir(String chosenDir)
+                                {
+                                    SharedPreferences prefs = getSharedPreferences("WBT201", Context.MODE_PRIVATE);
+
+                                    File prefDir = new File(chosenDir);
+                                    if (prefDir.isDirectory()) {
+                                        ConnectionService.downloadDir = prefDir;
+                                        SharedPreferences.Editor ed = prefs.edit();
+                                        ed.putString("trackDir", chosenDir);
+                                        ed.commit();
+                                    }
+                                    feedback.append(getString(R.string.string_track_download_to));
+                                    feedback.append(ConnectionService.downloadDir.getAbsolutePath()+"\n");
+                                }
+                            });
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
