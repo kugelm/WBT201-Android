@@ -1,5 +1,5 @@
-WBT201-Android
-==============
+WBT201 App for Android
+======================
 
 Simplistic ("One Button") App for Android. This app will read out the stored tracks on a Wintec G-Rays 2 GPS logger (known as WBT201) via Bluetooth.
 The app needs at least two Android permissions: Bluetooth (+ Bluetooth Admin) and for storing track data write access to the SD card.
