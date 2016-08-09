@@ -320,7 +320,8 @@ public class MainActivity extends ActionBarActivity {
                 // Add the name and address to an array adapter to show in a ListView
                 Log.d(TAG, "paired bt dev: " + device.getName() + " - " + device.getAddress());
 
-                if (device.getName().matches("G-Rays2")) {
+                if (   device.getName().matches("G-Rays2")
+                    || device.getName().matches("Registrator 2x") ) {
                     if (wbt201!=null) {
                         feedback.append( getString(R.string.string_multiple_loggers));
                     }
