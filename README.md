@@ -15,3 +15,5 @@ Plans for future versions:
 * alternative track directory (selectable) <-- done in latest version, could be improved
 * alternative track file formats
 * visualize tracks from app's menu (own viewer, other map apps....)
+
+Update: added support for the WBT-201 clone "JJ-Connect Registrator"
