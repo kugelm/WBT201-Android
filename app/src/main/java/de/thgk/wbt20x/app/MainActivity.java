@@ -47,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
     private BluetoothAdapter BA = BluetoothAdapter.getDefaultAdapter();
     private static final int SWITCHON_BLUETOOTH = 1;
 
+
     private static TextView feedback;
 
     private boolean isListening = false;
